@@ -1,0 +1,17 @@
+<textarea [(ngModel)]='publicationGuid' placeholder="publicationGuid"></textarea>
+<button class="TokenAPIButton" (click)="logingThroughTokenAPI()">Login Through TokenAPI</button>
+<textarea [(ngModel)]='context' placeholder="Tagged Content XML"></textarea>
+<button class="ContentTaggingButton" (click)="getTaggedContent()"> Get Tagged Content</button>
+
+
+<!-- <table cdk-table [dataSource]="dataSource">
+    <ng-container cdkColumnDef="tag">
+      <th cdk-header-cell *cdkHeaderCellDef> Tag </th>
+      <td cdk-cell *cdkCellDef="let row"> {{row.tag}} </td>
+    </ng-container>
+  
+    <ng-container cdkColumnDef="url">
+      <th cdk-header-cell *cdkHeaderCellDef> User </th>
+      <td cdk-cell *cdkCellDef="let row"> {{row.user}} </td>
+    </ng-container>
+</table> -->
