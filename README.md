@@ -5,3 +5,6 @@ See https://imola-prod-api-2c3f1a34.azurewebsites.net/swagger/ui/index for the A
 # About the electron app
 
 In the ```samples/electron``` folder run ```npm install``` followed by ```npm start``` to try the electron application.
+
+See [https://github.com/askdelphibv/askdelphi-context-detection-sample/tree/main/samples/electron/src/app/home] for the implementation of the process.
+
