@@ -27,7 +27,7 @@
     <p>Below are all tags that were returned. Press teh button for ther context tag for which you would like to list the
       content.</p>
     <div class="button-container" *ngFor="let tag of tags">
-      <button class="ContentTaggingButton" (click)="getContent(tag)">Search by tag for: {{tag.desciption}}
+      <button class="ContentTaggingButton" (click)="getContent(tag)">Search by tag for: {{tag.description}}
         ({{tag.tag}}/{{tag.score}})</button>
     </div>
 
