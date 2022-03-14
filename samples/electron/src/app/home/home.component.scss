@@ -1,3 +1,26 @@
 :host {
-  
+    .page {
+        font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+
+        padding: 10px;
+
+        h2 {
+            border-top: 1px solid black;
+            border-bottom: 1px solid black;
+            margin: 2px;
+        }
+
+        button {
+            padding: 4px;
+            width: 98%;            
+        }
+
+        input {
+            width: 98%;
+        }
+        textarea {
+            width: 98%;
+            min-height: 200px;
+        }
+    }
 }

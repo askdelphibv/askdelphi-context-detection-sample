@@ -1,17 +1,49 @@
-<textarea [(ngModel)]='publicationGuid' placeholder="publicationGuid"></textarea>
-<button class="TokenAPIButton" (click)="logingThroughTokenAPI()">Login Through TokenAPI</button>
-<textarea [(ngModel)]='context' placeholder="Tagged Content XML"></textarea>
-<button class="ContentTaggingButton" (click)="getTaggedContent()"> Get Tagged Content</button>
+<div class="page">
+  <h1>Try it yourself!</h1>
 
+  <h2 *ngIf="busy"><span class="fa fa-spin fa-spinner"></span> busy...</h2>
 
-<!-- <table cdk-table [dataSource]="dataSource">
-    <ng-container cdkColumnDef="tag">
-      <th cdk-header-cell *cdkHeaderCellDef> Tag </th>
-      <td cdk-cell *cdkCellDef="let row"> {{row.tag}} </td>
-    </ng-container>
-  
-    <ng-container cdkColumnDef="url">
-      <th cdk-header-cell *cdkHeaderCellDef> User </th>
-      <td cdk-cell *cdkCellDef="let row"> {{row.user}} </td>
-    </ng-container>
-</table> -->
+  <h2>Step 1: Authenticate</h2>
+
+  <p>In order to try this out yourself, you first need to obtain a JWT token that allwos you to access the API.</p>
+  <p>What we need from you first is a publication GUID. Please enter one here:</p>
+  <div class="required-input">
+    <input type="text" [(ngModel)]='publicationGuid' placeholder="publicationGuid">
+  </div>
+  <p>After entering the publication guid, press the following button to be redirected to the application's login page.
+  </p>
+
+  <button class="TokenAPIButton" (click)="logingThroughTokenAPI()">Login Through TokenAPI</button>
+
+  <div *ngIf="loggedIn">
+    <h2>Step 2: Pass context XML through rules engine</h2>
+    <p>In the text area below enter your context XML document as you would generate it in your own application.</p>
+    <textarea [(ngModel)]='context' placeholder="Tagged Content XML" style="width:100%; min-height: 300px;"></textarea>
+    <button class="ContentTaggingButton" (click)="getTags()">Get relevant tags for context XML</button>
+  </div>
+
+  <div *ngIf="tags && tags.length > 0">
+    <h2>Step 3: Find matching topics for selected context</h2>
+    <p>Below are all tags that were returned. Press teh button for ther context tag for which you would like to list the
+      content.</p>
+    <div class="button-container" *ngFor="let tag of tags">
+      <button class="ContentTaggingButton" (click)="getContent(tag)">Search by tag for: {{tag.desciption}}
+        ({{tag.tag}}/{{tag.score}})</button>
+    </div>
+
+    <div *ngIf="matches && matches.length > 0">
+      <h2>Found matches</h2>
+      <p>The list below contains the {{matches.length}} match(es) that was/were found</p>
+      <div class="topic-container" *ngFor="let match of matches">
+        <h3>{{match.title}}</h3>
+        <p>url: <a [href]="match.url" target="_blank">{{match.url}}</a></p>
+        <p>score: {{match.score}}</p>
+      </div>
+    </div>
+
+    <div *ngIf="!matches || matches.length == 0">
+      <h2>There are no matches for this context</h2>
+    </div>
+  </div>
+
+</div>

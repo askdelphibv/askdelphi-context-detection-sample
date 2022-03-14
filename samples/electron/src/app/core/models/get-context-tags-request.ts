@@ -1,4 +1,4 @@
-export interface Rule {
+export interface GetContextTagsRequest {
     contextXML: string;
     publicationGuid: string;
 }

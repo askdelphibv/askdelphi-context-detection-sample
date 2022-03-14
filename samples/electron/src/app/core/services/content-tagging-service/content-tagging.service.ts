@@ -1,9 +1,11 @@
 /* eslint-disable @typescript-eslint/naming-convention */
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
-import { Rule } from '../../models/rule';
-import { Tag } from '../../models/tag';
+import { Observable, take } from 'rxjs';
+import { GetContextTagsRequest } from '../../models/get-context-tags-request';
+import { GetContextTagsResponse } from '../../models/get-context-tags-response';
+import { SearchByTagRequest } from '../../models/search-by-tag-request';
+import { SearchByTagResponse } from '../../models/search-by-tag-response';
 
 @Injectable({
   providedIn: 'root'
@@ -19,15 +21,15 @@ export class ContentTaggingService {
 
   constructor(private http: HttpClient) { }
 
-  postRule(rule: Rule, token: string): Observable<any> {
+  postGetContextTags(rule: GetContextTagsRequest, token: string): Observable<GetContextTagsResponse> {
     this.httpOptions.headers = this.httpOptions.headers.set(`Authorization`, `Bearer ${token}`);
 
-    return this.http.post<Rule>(`${this.baseUrl}/RulesAPI/matches`, rule, this.httpOptions);
+    return this.http.post<GetContextTagsResponse>(`${this.baseUrl}/RulesAPI/matches`, rule, this.httpOptions).pipe(take(1));
   }
   
-  getTopicByTag(tag: Tag, token: string): Observable<any> {
+  searchByTag(tag: SearchByTagRequest, token: string): Observable<SearchByTagResponse> {
     this.httpOptions.headers = this.httpOptions.headers.set(`Authorization`, `Bearer ${token}`);
 
-    return this.http.post<Tag>(`${this.baseUrl}/SearchAPI/searchbytag`, tag, this.httpOptions);
+    return this.http.post<SearchByTagResponse>(`${this.baseUrl}/SearchAPI/searchbytag`, tag, this.httpOptions).pipe(take(1));
   }
 }
