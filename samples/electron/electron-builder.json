@@ -21,6 +21,7 @@
   ],
   "win": {
     "icon": "dist/assets/icons",
+    "sign": "./electron-customsign.js",
     "target": [
       "portable"
     ]
